@@ -1,0 +1,107 @@
+﻿@model CoreMvcExamApp.Models.Invoice
+@inject StoreContext db
+@{
+	ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Invoice</h4>
+<hr />
+<div class="row">
+	<form asp-action="Edit">
+		<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+		<input type="hidden" asp-for="Id" />
+		<div class="form-group">
+			<label asp-for="InvoiceDate" class="control-label"></label>
+			<input asp-for="InvoiceDate" class="form-control" />
+			<span asp-validation-for="InvoiceDate" class="text-danger"></span>
+		</div>
+		<div class="form-group">
+			<label asp-for="CustomerName" class="control-label"></label>
+			<input asp-for="CustomerName" class="form-control" />
+			<span asp-validation-for="CustomerName" class="text-danger"></span>
+		</div>
+		<div class="form-group">
+			<label asp-for="Address" class="control-label"></label>
+			<input asp-for="Address" class="form-control" />
+			<span asp-validation-for="Address" class="text-danger"></span>
+		</div>
+		<div class="form-group">
+			<label asp-for="ContactNo" class="control-label"></label>
+			<input asp-for="ContactNo" class="form-control" />
+			<span asp-validation-for="ContactNo" class="text-danger"></span>
+		</div>
+
+
+		<br />
+		<table class="table table-responsive table-hover table-bordered table-striped">
+
+			<thead>
+				<tr>
+					<th>
+						Item Name
+					</th>
+					<th>
+						Quantity
+					</th>
+					<th>
+						Total
+					</th>
+					<th>
+						<input type="submit" value="Add" name="command" class="btn btn-success " />
+					</th>
+				</tr>
+			</thead>
+
+			<tbody>
+
+				@for (int i = 0; i < Model.Items.Count; i++)
+				{
+					<tr>
+						<td>
+
+							<input asp-for="Items[i].ItemId" type="hidden" />
+
+
+							@*   <input asp-for="Items[i].ProductId" class="form-control" /> *@
+
+							<select asp-for="Items[i].ProductId" asp-items="db.Products.Select(p=> new SelectListItem(){Text = p.ProductName,Value = p.ProductId.ToString() })">
+							</select>
+
+
+						</td>
+
+						<td>
+							<input asp-for="Items[i].Quantity" class="form-control" />
+						</td>
+						<td>
+							<input asp-for="Items[i].ItemTotal" class="form-control" readonly />
+						</td>
+						<td>
+							<button value="delete-@i" name="command">Delete</button>
+						</td>
+					</tr>
+				}
+
+			</tbody>
+
+
+		</table>
+
+		<hr />
+		<div class="form-group">
+			<input type="submit" value="Save" class="btn btn-primary" />
+		</div>
+	</form>
+</div>
+
+<div>
+	<a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+}

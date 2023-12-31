@@ -1,0 +1,53 @@
+﻿@model List<InvoiceItem>
+
+<table class="table table-responsive table-hover table-bordered table-striped">
+
+	<thead>
+		<tr>
+			<th>
+				Item Name
+			</th>
+			<th>
+				Unit Price
+			</th>
+			<th>
+				Quantity
+			</th>
+			<th>
+				Total
+			</th>
+		</tr>
+	</thead>
+
+	<tbody>
+
+		@foreach(var item in Model)
+		{
+			<tr>
+				<td>
+					@item.Product?.ProductName
+				</td>
+				<td>
+					@item.Product?.Price
+				</td>
+				<td>
+					<input asp-for="@item.Quantity" class="form-control" readonly />
+				</td>
+				<td>
+					<input asp-for="@item.ItemTotal" class="form-control" readonly />
+				</td>
+			</tr>
+		}
+
+	</tbody>
+	<tfoot>
+		<tr>
+			<td colspan="4">
+				Invoice Total = @ViewBag.Total and No of Item is @ViewBag.Count
+
+				Average item Price @Model.Average(i => i.Product?.Price)
+			</td>
+		</tr>
+	</tfoot>
+
+</table>
