@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CoreMvcExamApp.Models
 {
@@ -6,6 +7,8 @@ namespace CoreMvcExamApp.Models
     {
         public int ProductId { get; set; }
         public string ProductName { get; set; }
+
+        [Display(Name = "Image : ")]
         public string? ProductImage { get; set; }
         public decimal Price { get; set; }
 

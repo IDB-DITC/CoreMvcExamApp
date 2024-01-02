@@ -245,6 +245,7 @@ namespace CoreMvcExamApp.Controllers
             return RedirectToAction(nameof(Index));
         }
         [HttpDelete]
+        [Route("~/deleteinvoice/{id}")]
         public async Task<IActionResult> DeleteAjax(int id)
         {
             //var invoice = await _context.Invoices.FindAsync(id);

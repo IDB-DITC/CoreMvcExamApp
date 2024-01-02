@@ -7,7 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Invoices\_ItemList.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="Views\Invoices\Components\ItemList\Default.cshtml" />
+    <None Include="Views\Invoices\_ItemList.cshtml" />
   </ItemGroup>
 
   <ItemGroup>

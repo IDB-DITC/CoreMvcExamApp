@@ -10,7 +10,7 @@ namespace CoreMvcExamApp.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            string SpInsertInvoice = @"CREATE PROCEDURE dbo.SpInsertInvoice 
+            string SpInsertInvoice = @"create or ALTER  PROCEDURE dbo.SpInsertInvoice 
     @InvoiceDate datetime2(7),
     @CustomerName nvarchar(max),  
     @Address nvarchar(max),  
@@ -30,7 +30,7 @@ GO";
             migrationBuilder.Sql(SpInsertInvoice);
 
 
-            string SpInsertInvoiceItem = @"CREATE PROCEDURE dbo.SpInsertInvoiceItem 
+            string SpInsertInvoiceItem = @"create or ALTER  PROCEDURE dbo.SpInsertInvoiceItem 
 	@InvoiceId int,
     @ProductId int,
     @Quantity int
@@ -49,7 +49,7 @@ GO";
 
             migrationBuilder.Sql(SpInsertInvoiceItem);
 
-            string SpUpdateInvoice = @"CREATE PROCEDURE dbo.SpUpdateInvoice 
+            string SpUpdateInvoice = @"create or ALTER  PROCEDURE dbo.SpUpdateInvoice 
     @InvoiceId int,
     @InvoiceDate datetime2(7),
     @CustomerName nvarchar(max),  
@@ -71,7 +71,7 @@ GO";
             migrationBuilder.Sql(SpUpdateInvoice);
 
 
-            string SpDeleteInvoice = @"CREATE PROCEDURE dbo.SpDeleteInvoice 
+            string SpDeleteInvoice = @"create or ALTER  PROCEDURE dbo.SpDeleteInvoice 
     @InvoiceId int
 AS
 	  delete from InvoiceItems where InvoiceId = @InvoiceId
